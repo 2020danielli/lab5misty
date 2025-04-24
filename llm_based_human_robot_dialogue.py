@@ -17,7 +17,13 @@ custom_actions = {
     "reset": "IMAGE:e_DefaultContent.jpg; ARMS:40,40,1000; HEAD:-5,0,0,1000;",
     "head-up-down-nod": "IMAGE:e_DefaultContent.jpg; HEAD:-15,0,0,500; PAUSE:500; HEAD:5,0,0,500; PAUSE:500; HEAD:-15,0,0,500; PAUSE:500; HEAD:5,0,0,500; PAUSE:500; HEAD:-5,0,0,500; PAUSE:500;",
     "hi": "IMAGE:e_Admiration.jpg; ARMS:-80,40,100;",
-    "listen": "IMAGE:e_Surprise.jpg; HEAD:-6,30,0,1000; PAUSE:2500; HEAD:-5,0,0,500; IMAGE:e_DefaultContent.jpg;"
+    "listen": "IMAGE:e_Surprise.jpg; HEAD:-6,30,0,1000; PAUSE:2500; HEAD:-5,0,0,500; IMAGE:e_DefaultContent.jpg;",
+
+    "excited": "IMAGE:e_Joy.jpg; ARMS:-80,80,1000; PAUSE:300; ARMS:80,-80,1000; PAUSE:300; ARMS:0,0,1000;",
+    "think": "IMAGE:e_Thinking.jpg; HEAD:-5,0,20,1000; PAUSE:500; HEAD:-5,0,-20,1000; PAUSE:500; HEAD:-5,0,0,1000;",
+    "nod": "IMAGE:e_Confused.jpg; ARMS:-40,-40,800; PAUSE:500; ARMS:0,0,800;",
+    "happy": "IMAGE:e_Joy2.jpg; ARMS:-60,60,500; PAUSE:500; ARMS:60,-60,500; PAUSE:500; ARMS:-60,60,500; PAUSE:500; ARMS:0,0,500;",
+    "supportive": "IMAGE:e_Sleeping.jpg; HEAD:0,0,-30,1000; ARMS:0,0,1000;"
 }
 
 
@@ -65,6 +71,7 @@ class MistyRobot():
         self.speech_file_path_local = path = os.path.join(os.path.dirname(__file__), 'robot_speech_files/speech.mp3')
         local_ip_address = [(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in\
  [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]
+        print(local_ip_address)
         self.speech_file_path_for_misty = 'http://' + local_ip_address + ':8000/robot_speech_files/speech.mp3'
 
         # Load the Google Gemini API key from the environment variable
@@ -118,9 +125,9 @@ class MistyRobot():
             # OpenAI text-to-speech: generating speech and saving to a file
             with self.openai_client.audio.speech.with_streaming_response.create(
                 model="gpt-4o-mini-tts", #tts-1 may also be a good choice, as it was designed with low latency
-                voice="alloy", # TODO: select a different voice for misty, see all voice options and play around with them at https://www.openai.fm/
+                voice="nova", # TODO: select a different voice for misty, see all voice options and play around with them at https://www.openai.fm/
                 input=response_text,
-                instructions="Speak with a calm and encouraging tone.",
+                instructions="Speak with a happy and engaging tone.",
             ) as response:
                 response.stream_to_file(self.speech_file_path_local)
 
@@ -279,4 +286,7 @@ if __name__ == "__main__":
     # set up the MistyRobot object 
     # TODO: modify the system instruction text file to allow the robot to execute the 
     #       "Three Good Things" exercise
+    #
     misty_robot = MistyRobot(misty_ip_address, 'three_good_things_system_instruction.txt')
+    #misty = Robot(misty_ip_address)
+    

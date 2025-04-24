@@ -9,9 +9,14 @@ custom_actions = {
     "reset": "IMAGE:e_DefaultContent.jpg; ARMS:40,40,1000; HEAD:-5,0,0,1000;",
     "head-up-down-nod": "IMAGE:e_DefaultContent.jpg; HEAD:-15,0,0,500; PAUSE:500; HEAD:5,0,0,500; PAUSE:500; HEAD:-15,0,0,500; PAUSE:500; HEAD:5,0,0,500; PAUSE:500; HEAD:-5,0,0,500; PAUSE:500;",
     "hi": "IMAGE:e_Admiration.jpg; ARMS:-80,40,100;",
-    "listen": "IMAGE:e_Surprise.jpg; HEAD:-6,30,0,1000; PAUSE:2500; HEAD:-5,0,0,500; IMAGE:e_DefaultContent.jpg;"
-}
+    "listen": "IMAGE:e_Surprise.jpg; HEAD:-6,30,0,1000; PAUSE:2500; HEAD:-5,0,0,500; IMAGE:e_DefaultContent.jpg;",
 
+    "excited": "IMAGE:e_Joy.jpg; ARMS:-80,80,1000; PAUSE:300; ARMS:80,-80,1000; PAUSE:300; ARMS:0,0,1000;",
+    "think": "IMAGE:e_Thinking.jpg; HEAD:-5,0,20,1000; PAUSE:500; HEAD:-5,0,-20,1000; PAUSE:500; HEAD:-5,0,0,1000;",
+    "nod": "IMAGE:e_Confused.jpg; ARMS:-40,-40,800; PAUSE:500; ARMS:0,0,800;",
+    "happy": "IMAGE:e_Joy2.jpg; ARMS:-60,60,500; PAUSE:500; ARMS:60,-60,500; PAUSE:500; ARMS:-60,60,500; PAUSE:500; ARMS:0,0,500;",
+    "supportive": "IMAGE:e_Sleeping.jpg; HEAD:0,0,-30,1000; ARMS:0,0,1000;"
+}
 if __name__ == "__main__":
 
     # get Misty IP address
